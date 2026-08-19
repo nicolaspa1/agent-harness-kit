@@ -16,9 +16,11 @@ Lee `CLAUDE.md`. Es el contexto permanente: la arquitectura tal y como la conoce
 las dos reglas que gobiernan cualquier propuesta, y **la lista de lo que ya se descartó**
 para que no se vuelva a proponer. Claude lo carga solo al abrir el proyecto.
 
-En `contexto/` están los tres informes completos de la investigación previa (49
-estrategias evaluadas por un panel de cuatro calificadores). No hace falta leerlos para
-usar el kit — están ahí para consultarlos cuando una decisión necesite respaldo.
+En `contexto/` están los cuatro informes completos de la investigación previa. No hace
+falta leerlos para usar el kit — están ahí para consultarlos cuando una decisión
+necesite respaldo. Si solo vas a leer uno, lee
+`contexto/ronda4-harness-y-flujo.md`: trae el vocabulario para la charla, la evidencia
+medida sobre cuánto compra el harness, y el flujo de trabajo del día a día.
 
 ## 1. Monta la carpeta
 
@@ -67,6 +69,10 @@ las tres rondas y aquí se aplica a nosotros mismos.
 | 3 | `03-fronteras.md` | `salida/03-fronteras.md` | 15-30 min |
 | 4 | `04-diagnostico.md` | `salida/04-diagnostico.md` + borradores de AGENTS.md | 20-40 min |
 | 5 | `05-contraste-codely.md` | `salida/05-codely.md` | 15 min |
+| 7 | `07-rejilla-harness.md` | `salida/07-rejilla.md` | 15-25 min |
+
+El 7 se ejecuta **después del 04** y clasifica lo que ya tienes en la rejilla
+guide/sensor × computacional/inferencial. Es el que produce el material de la charla.
 
 El `00-setup.md` es redundante si ya corriste el prompt inicial; está por si quieres
 la verificación por separado.
@@ -100,6 +106,21 @@ en un test o un check de CI que falle, ahí es donde va.
 
 Los prompts aplican estas dos reglas por ti, pero conviene que las tengas presentes
 al revisar la salida.
+
+**El matiz que salvó al router.** La regla 1 parece condenar cualquier fichero de mapa.
+No lo hace, y la distinción es el propio criterio de la regla: un resumen de repo
+duplica lo que el grep encuentra; **un router de workspace contiene justo lo que el grep
+NO puede encontrar**, porque vive en un repo que el agente no ha abierto o no vive en
+ningún fichero. El acoplamiento svc-control → svc-lib vía bucket es ingrepeable por
+construcción: por eso esa sección es la importante del router, y por eso el resto del
+fichero debe seguir famélico.
+
+**Y el mecanismo que resuelve el problema original.** Este proyecto nace de que "el
+agente redescubre el sistema a base de greps, quemando contexto". La respuesta oficial
+no es un índice: es el **subagente**. En el ejemplo de la documentación de Anthropic un
+subagente gastó 6 100 tokens leyendo ficheros y devolvió 420 a la conversación
+principal; sus lecturas cuestan cero contra tu ventana. Cuando un prompt tenga que
+rastrear un flujo entre repos, deja que lo haga un subagente y te devuelva el resumen.
 
 ---
 

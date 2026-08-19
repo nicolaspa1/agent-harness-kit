@@ -1,5 +1,16 @@
 <!-- PLANTILLA. Va en la raíz del workspace (svc/AGENTS.md).
-     Máximo 40 líneas. Si crece más, algo inferible se ha colado. -->
+     Máximo 40 líneas (~1.000 tokens, que es el presupuesto que fija Aider para
+     su repo map por defecto). Si crece más, algo inferible se ha colado.
+
+     CRITERIO DE ADMISIÓN, en una línea: entra si un agente con acceso a todo el
+     workspace NO podría deducirlo leyendo código.
+
+     APUNTA A IDENTIDAD, NO A RUTAS. Coordenadas Gradle/Maven y nombre del artefacto
+     en el bucket, no `src/main/java/.../Handler.java`. Las rutas son lo primero que
+     se pudre; las coordenadas aguantan. (Lección de diseño de SCIP.)
+
+     VA EN LA RAÍZ, no anidado: tras compactar contexto, Claude Code relee y reinyecta
+     el fichero raíz, pero NO los anidados ni las reglas con `paths:`. -->
 
 # SVC — workspace
 

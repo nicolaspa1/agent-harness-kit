@@ -25,3 +25,12 @@
 <!-- NO pongas aquí: descripción de la arquitectura de carpetas, listado de clases,
      resumen de qué hace cada paquete, convenciones que ya impone el linter.
      Todo eso lo descubre el agente solo y encarece cada sesión. -->
+
+<!-- ANTES DE AÑADIR UNA LÍNEA, PREGÚNTATE SI PUEDE SER UN SENSOR.
+     Sobre 4.550 PRs agénticos, el cumplimiento de una instrucción escrita en un
+     AGENTS.md fue del 8,3 %. Una regla de ArchUnit, un japicmp o un
+     `options.release` se cumplen el 100 % de las veces porque rompen la build.
+     Escribe aquí solo lo que no se pueda comprobar.
+
+     Test por línea, de la documentación oficial: "¿quitar esto haría que Claude
+     cometa errores? Si no, córtala." -->

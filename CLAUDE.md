@@ -4,6 +4,10 @@ Este repositorio no contiene el código del sistema. Contiene el **procedimiento
 analizarlo y todo el contexto de investigación previa. El código real se clona como
 carpetas hermanas cuando se usa (ver README.md).
 
+> Cuatro rondas de investigación en `contexto/`. La ronda 4 aporta el vocabulario del
+> harness, la evidencia medida sobre cuánto compra, y la capa de flujo de trabajo.
+> Informe completo: https://claude.ai/code/artifact/ea350ca8-7674-44d5-871a-7aa07b03a88d
+
 ## Qué se está intentando resolver
 
 Un equipo trabaja sobre un sistema de procesamiento en tiempo real repartido en varios
@@ -66,6 +70,29 @@ ese es su sitio.
 Corolario práctico, verificado en la ronda 2: **toda estrategia que empieza pidiéndole
 permiso a otro equipo no se ejecuta nunca.** Prioriza lo unilateral.
 
+## La rejilla con la que clasificar cualquier propuesta
+
+De la ronda 4 (Böckeler, martinfowler.com, abril 2026). **Agente = modelo + harness.**
+Todo control cae en una de estas cuatro casillas, y saber en cuál cae decide si merece
+la pena:
+
+|  | **Computacional** (determinista, fiable) | **Inferencial** (LLM, probabilístico) |
+|---|---|---|
+| **Guide** — dirige *antes* de actuar | `options.release = 11`, módulos Gradle, tipos | AGENTS.md, router, flow.md |
+| **Sensor** — observa *después*, permite autocorregir | ArchUnit, japicmp, tests, compilador | revisión por agente |
+
+Las dos reglas de arriba son, en este marco: la regla 2 dice *prefiere la columna
+izquierda*; la regla 1 dice *qué puede entrar en la fila de guides*. Las cuatro
+estrategias que sobrevivieron a la ronda 3 son las cuatro computacionales — el panel
+convergió en la columna correcta sin conocer el marco.
+
+**Java con Gradle es un caso de harnessability alta**: compilador, ArchUnit, japicmp y
+frontera de módulo verificable. Aprovéchalo antes de escribir prosa.
+
+**La regla de las dos veces.** Cuando el agente comete el mismo error por segunda vez,
+no arregles el artefacto: arregla el guide o el sensor. Si se puede comprobar, es un
+sensor. Si hay que saberlo de antemano, es un guide.
+
 ## Lo que ya se descartó — no lo vuelvas a proponer
 
 Tres rondas de investigación, 49 estrategias evaluadas por un panel de cuatro
@@ -83,6 +110,21 @@ calificadores. Detalle completo en `contexto/`.
 - **Backstage, catálogo de servicios, Pact**: todos requieren el sí del equipo TP.
 - **Generar un catálogo de operaciones desde el enum**: se evaluó y no se paga, porque
   las operaciones casi no cambian.
+
+Añadido en la ronda 4 (detalle en `contexto/ronda4-harness-y-flujo.md`):
+
+- **Frameworks de proceso (Superpowers, GSD)**: ninguno tiene historia multi-repo. GSD
+  lo declara explícitamente fuera de alcance y cambió de repositorio tres veces en ocho
+  meses.
+- **Orquestadores de workspace** (Conductor, Vibe Kanban, agent teams): todos son "un
+  repo, N worktrees". Paralelizan *dentro* de un repo, que es otro problema.
+- **Ralph Wiggum**: su autor dice explícitamente que no lo usaría en un codebase
+  existente. Es para greenfield.
+- **TDD obligatorio dentro del bucle del agente**: medido en agosto de 2026, sin
+  diferencia discernible y con 3 a 8,5× más tokens. Los tests sí; la ceremonia del
+  orden no.
+- **`@import` como técnica para adelgazar contexto**: los ficheros importados se cargan
+  enteros al arrancar. Sirven para organizar, no para ahorrar.
 
 ## Lo que sí sobrevivió
 
