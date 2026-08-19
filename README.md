@@ -70,6 +70,13 @@ las tres rondas y aquí se aplica a nosotros mismos.
 | 4 | `04-diagnostico.md` | `salida/04-diagnostico.md` + borradores de AGENTS.md | 20-40 min |
 | 5 | `05-contraste-codely.md` | `salida/05-codely.md` | 15 min |
 | 7 | `07-rejilla-harness.md` | `salida/07-rejilla.md` | 15-25 min |
+| 8 | `08-reproceso.md` | `salida/08-reproceso.md` | 15-25 min |
+
+El 8 solo hace falta si ya habías ejecutado prompts **antes** de la actualización de
+agosto: reconcilia lo ya producido con los criterios nuevos sin rehacerlo. Si empiezas
+de cero, sáltalo.
+
+El guion de la charla está en `charla/guion.md`.
 
 El 7 se ejecuta **después del 04** y clasifica lo que ya tienes en la rejilla
 guide/sensor × computacional/inferencial. Es el que produce el material de la charla.
